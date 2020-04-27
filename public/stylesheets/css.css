@@ -1,0 +1,8 @@
+.formContainer{
+	width: 500px;
+}
+
+.removeBtn {
+	display: inline;
+	color: blue;
+}

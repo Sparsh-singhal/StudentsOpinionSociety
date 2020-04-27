@@ -1,0 +1,58 @@
+<!doctype HTML>
+<html>
+	<head>
+		<title>Blog</title>
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/stylesheets/css.css">
+		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand" href="/">Students Opinion Society</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			  <ul class="nav navbar-nav">
+				<li class="active"><a href="#">Blog <span class="sr-only">(current)</span></a></li>
+				<li><a href="#">Link</a></li>
+				
+			  </ul>
+			  <ul class="nav navbar-nav navbar-right">
+			<%	if(currentUser) { %>
+				  <li><a href="#"><%= currentUser.username %></a></li>
+				  <li><a href="/logout">Logout</a></li>
+				<%  } else { %>
+				  <li><a href="/register">Sign Up</a></li>
+				<li><a href="/login">Login</a></li>
+				<% } %>
+			  </ul>
+			</div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+		
+		
+		<div class="container">	
+			<% if(success && success.length > 0) { %>
+				<div class="alert alert-success" role="alert">
+					<%= success %>
+				</div>
+			<% } else if(error && error.length > 0) { %>
+				<div class="alert alert-danger" role="alert">
+					<%= error %>
+				</div>
+			<% } %>
+		</div>
+		
+	
