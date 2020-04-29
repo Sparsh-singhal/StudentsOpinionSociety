@@ -6,3 +6,9 @@
 	display: inline;
 	color: blue;
 }
+
+.navbar-brand img{
+	width:25px;
+	height:25px;
+   border-radius: 20px;
+}
