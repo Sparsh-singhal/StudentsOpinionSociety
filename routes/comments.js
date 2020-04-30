@@ -22,7 +22,7 @@ router.post("/:id/comments",middleware.isLoggedIn, function(req, res){
 					newComment.save();
 					blog.comments.push(newComment);
 					blog.save();
-					res.redirect("/" + req.params.id);
+					res.redirect("/blog" + req.params.id);
 				}
 			})
 		}

@@ -4,7 +4,10 @@ var express = require("express"),
 	middleware = require("../middleware");
 
 // INDEX ROUTE
-router.get("/", function(req, res){
+router.get("/",function(req,res){
+	res.render("blogs/home");
+})
+router.get("/blog", function(req, res){
 	
 	Blog.find({}, function(err, allBlogs){
 		if(err){
@@ -21,7 +24,7 @@ router.get("/new", middleware.isLoggedIn , function(req, res){
 	res.render("blogs/new");
 })
 // CREATE ROUTE
-router.post("/", function(req, res){
+router.post("/blog", function(req, res){
 	Blog.create(req.body.blog, function(err, newBlog){
 		if(err){
 			console.log("error creating new post");
@@ -30,7 +33,7 @@ router.post("/", function(req, res){
 			newBlog.author.id = req.user._id;
 			newBlog.author.username = req.user.username;
 			newBlog.save();
-			res.redirect("/");
+			res.redirect("/blog");
 		}
 	})
 })
@@ -41,7 +44,15 @@ router.get("/:id", function(req, res){
 			console.log(err)
 		}
 		else {
-			res.render("blogs/show", {blog: showBlog});
+			Blog.find({},function(err,allBlogs){
+				if(err){
+					res.send(err);
+				}
+				else{
+					res.render("blogs/show", {blog: showBlog,allblog:allBlogs});
+				}
+			})
+			
 		}
 	})
 })
@@ -74,7 +85,7 @@ router.delete("/:id",middleware.checkBlogOwnership, function(req, res){
 			console.log("error finding and deleting blog");
 		}
 		else{
-			res.redirect("/");
+			res.redirect("/blog");
 		}
 	})
 })
